@@ -15,9 +15,6 @@ import javax.swing.*;
 
 import Logic.Field;
 
-/**
- * Created by 212596044 on 7/24/2017.
- */
 public class Board extends JFrame {
     private Field field;
 
@@ -25,21 +22,22 @@ public class Board extends JFrame {
         this.field = field;
     }
 
-    public void drawBoard(){
-        int width=field.getWidth();
-        int height=field.getHeight();
-        int zoneSize=field.getZoneSize();
+    public void drawBoard() {
+        int width = field.getWidth();
+        int height = field.getHeight();
+        int zoneSize = field.getZoneSize();
         String line;
-        String separator= "*************";
+        String separator = "*************";
         System.out.println(separator);
-        for (int y = 0; y < height ; y++) {
-            line="*";
-            for (int x = 0; x < width ; x++) {
-                line+=field.getCellValue(x+y*width);
-                if (x%3==2) line+="*";
+        for (int y = 0; y < height; y++) {
+            line = "*";
+            for (int x = 0; x < width; x++) {
+                line += field.getCellValue(x + y * width);
+                if (x % 3 == 2)
+                    line += "*";
             }
             System.out.println(line);
-            if (y%3==2)
+            if (y % 3 == 2)
                 System.out.println(separator);
         }
     }
