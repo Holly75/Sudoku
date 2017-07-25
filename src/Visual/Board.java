@@ -1,14 +1,4 @@
-/*
- * Board.java
- * 
- * Copyright (c) 2017 by General Electric Company. All rights reserved.
- * 
- * The copyright to the computer software herein is the property of
- * General Electric Company. The software may be used and/or copied only
- * with the written permission of General Electric Company or in accordance
- * with the terms and conditions stipulated in the agreement/contract
- * under which the software has been supplied.
- */
+
 package Visual;
 
 import javax.swing.*;
@@ -16,11 +6,31 @@ import javax.swing.*;
 import Logic.Field;
 
 public class Board extends JFrame {
+    private static final int MIN_CELL_GAP = 2;
+    private static final int MIN_CELL_SIZE = 20;
+    private static final int MIN_MARGIN = 2;
     private Field field;
+    private int fieldWidth, fieldHeight, cellGap, margin, cellSize, cellCount;
+
+    private DisplayCell[] Cells;
 
     public Board(Field field) {
         this.field = field;
+
     }
+
+    public void reset() {
+        fieldWidth = field.getWidth();
+        fieldHeight = field.getHeight();
+        cellCount = fieldWidth * fieldHeight;
+        cellGap = MIN_CELL_GAP;
+        margin = MIN_MARGIN;
+        cellSize = (Math.min(getWidth(), getHeight()) - 2 * margin - (Math.max(fieldHeight, fieldWidth) - 1) * cellGap) / (Math.max(fieldHeight, fieldWidth));
+        System.out.println("Frame width: " + this.getWidth() + " Height: " + getHeight() + " gap:" + cellGap + " cellsize: " + cellSize);
+
+    }
+
+
 
     public void drawBoard() {
         int width = field.getWidth();
