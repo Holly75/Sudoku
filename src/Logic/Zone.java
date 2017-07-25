@@ -11,7 +11,9 @@
  */
 package Logic;
 
-
+/**
+ * Created by 212596044 on 7/24/2017.
+ */
 public class Zone {
     private int size;
     private Cell[] cells;

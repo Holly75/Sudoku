@@ -13,6 +13,9 @@ package Logic;
 
 import java.util.Vector;
 
+/**
+ * Created by 212596044 on 7/24/2017.
+ */
 public class Field {
     private int width,height;
     private int zoneSize,zoneCount;

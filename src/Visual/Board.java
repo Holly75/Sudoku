@@ -15,7 +15,9 @@ import javax.swing.*;
 
 import Logic.Field;
 
-
+/**
+ * Created by 212596044 on 7/24/2017.
+ */
 public class Board extends JFrame {
     private Field field;
 
