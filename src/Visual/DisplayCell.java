@@ -5,6 +5,8 @@ import javax.swing.*;
 
 import Logic.Cell;
 
+import java.awt.*;
+
 public class DisplayCell extends JPanel {
 
     private Board board;

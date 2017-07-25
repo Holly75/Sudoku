@@ -100,7 +100,7 @@ public class Field {
         return new boolean[zoneSize];
     }
 
-    private Cell getCellById(int id) {
+    public Cell getCellById(int id) {
         Cell result = null;
         for (Cell cell : cells) {
             if (cell.getId() == id) {
