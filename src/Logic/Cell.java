@@ -41,7 +41,7 @@ public class Cell {
         this.filled = filled;
     }
 
-    int getValue() {
+    public int getValue() {
         return value;
     }
 

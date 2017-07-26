@@ -13,7 +13,7 @@ public class Board extends JFrame {
     private static final int MIN_MARGIN = 2;
     private Field field;
     private int fieldWidth, fieldHeight, cellGap, margin, cellSize, cellCount;
-
+    static final Character[] textvalues = {' ','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G'};
     private DisplayCell[] cells;
 
     public Board(Field field) {
@@ -48,6 +48,7 @@ public class Board extends JFrame {
                 int posY = margin + y * (cellSize + cellGap);
                 dCell.setLocation(posX, posY);
                 dCell.setEnabled(true);
+                dCell.drawMarks();
                 dCell.setBorder(BorderFactory.createLineBorder(Color.black));
                 add(dCell);
                 cells[id] = dCell;
