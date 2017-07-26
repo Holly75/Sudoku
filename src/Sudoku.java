@@ -34,7 +34,7 @@ public class Sudoku {
         board.getContentPane().setLayout(null);
         board.reset();
         board.drawBoard();
-        board.reset();
+        
     }
 
 }

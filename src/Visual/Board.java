@@ -1,11 +1,11 @@
 
 package Visual;
 
+import java.awt.*;
+
 import javax.swing.*;
 
 import Logic.Field;
-
-import java.awt.*;
 
 public class Board extends JFrame {
     private static final int MIN_CELL_GAP = 2;
@@ -18,46 +18,48 @@ public class Board extends JFrame {
 
     public Board(Field field) {
         this.field = field;
-        cells=new DisplayCell[field.getHeight()*field.getWidth()];
+        cells = new DisplayCell[field.getHeight() * field.getWidth()];
 
     }
 
     public void reset() {
-        setBounds(32,32,400,400);
+
+        setBounds(32, 32, 360, 360);
         setVisible(true);
         fieldWidth = field.getWidth();
         fieldHeight = field.getHeight();
-        setLayout(new GridLayout(fieldWidth,fieldHeight));
+        setLayout(new GridLayout(fieldWidth, fieldHeight, cellGap, cellGap));
         cellCount = fieldWidth * fieldHeight;
         cellGap = MIN_CELL_GAP;
         margin = MIN_MARGIN;
         DisplayCell dCell;
-        cells=new DisplayCell[cellCount];
+        cells = new DisplayCell[cellCount];
         cellSize = (Math.min(getWidth(), getHeight()) - 2 * margin - (Math.max(fieldHeight, fieldWidth) - 1) * cellGap) / (Math.max(fieldHeight, fieldWidth));
         System.out.println("Frame width: " + this.getWidth() + " Height: " + getHeight() + " gap:" + cellGap + " cellsize: " + cellSize);
-        Dimension dimension = new Dimension(cellSize,cellSize);
-        for (int y = 0; y < fieldHeight ; y++) {
+        Dimension dimension = new Dimension(cellSize, cellSize);
+        for (int y = 0; y < fieldHeight; y++) {
             for (int x = 0; x < fieldWidth; x++) {
-                int id=x+y*fieldWidth;
-                dCell=new DisplayCell(this,id,field.getCellById(id));
+                int id = x + y * fieldWidth;
+                dCell = new DisplayCell(this, id, field.getCellById(id));
                 dCell.setPreferredSize(dimension);
                 dCell.setMinimumSize(dimension);
                 dCell.setMaximumSize(dimension);
-                int posX=margin+x*(cellSize+cellGap);
-                int posY=margin+y*(cellSize+cellGap);
-                dCell.setLocation(posX,posY);
+                int posX = margin + x * (cellSize + cellGap);
+                int posY = margin + y * (cellSize + cellGap);
+                dCell.setLocation(posX, posY);
                 dCell.setEnabled(true);
-                this.add(dCell);
-                cells[id]=dCell;
+                dCell.setBorder(BorderFactory.createLineBorder(Color.black));
+                add(dCell);
+                cells[id] = dCell;
             }
 
         }
         this.setVisible(true);
-        this.add(new JButton("Test"));
+        //        this.add(new JButton("Test"));
+        pack();
         this.invalidate();
+
     }
-
-
 
     public void drawBoard() {
         int width = field.getWidth();
