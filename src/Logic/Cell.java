@@ -5,7 +5,8 @@ import java.util.Vector;
 public class Cell {
     private int id;
     private boolean locked, filled;
-    private int value, maxvalue;
+    private int value;
+    private static int maxvalue;
     private boolean[] pencil;
     private Vector<Zone> zones;
 

@@ -13,7 +13,7 @@ public class Board extends JFrame {
     private static final int MIN_MARGIN = 2;
     private Field field;
     private int fieldWidth, fieldHeight, cellGap, margin, cellSize, cellCount;
-    static final Character[] textvalues = {' ','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G'};
+    static final Character[] textvalues = {' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G'};
     private DisplayCell[] cells;
 
     public Board(Field field) {
@@ -32,7 +32,7 @@ public class Board extends JFrame {
         cellCount = fieldWidth * fieldHeight;
         cellGap = MIN_CELL_GAP;
         margin = MIN_MARGIN;
-        DisplayCell dCell;
+        DisplayCell dCell = null;
         cells = new DisplayCell[cellCount];
         cellSize = (Math.min(getWidth(), getHeight()) - 2 * margin - (Math.max(fieldHeight, fieldWidth) - 1) * cellGap) / (Math.max(fieldHeight, fieldWidth));
         System.out.println("Frame width: " + this.getWidth() + " Height: " + getHeight() + " gap:" + cellGap + " cellsize: " + cellSize);
@@ -48,18 +48,20 @@ public class Board extends JFrame {
                 int posY = margin + y * (cellSize + cellGap);
                 dCell.setLocation(posX, posY);
                 dCell.setEnabled(true);
-                dCell.drawMarks();
                 dCell.setBorder(BorderFactory.createLineBorder(Color.black));
                 add(dCell);
                 cells[id] = dCell;
             }
 
         }
+        dCell.calculateFontSize();
         this.setVisible(true);
         //        this.add(new JButton("Test"));
         pack();
         this.invalidate();
-
+        for (DisplayCell displayCell : cells) {
+            displayCell.drawMarks();
+        }
     }
 
     public void drawBoard() {
