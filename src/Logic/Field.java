@@ -96,7 +96,7 @@ public class Field {
     public boolean[] getCellPencils(int id) {
         Cell cell = getCellById(id);
         if (cell != null)
-            return cell.getPencil();
+            return cell.getPencils();
         return new boolean[zoneSize];
     }
 

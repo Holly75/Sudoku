@@ -84,4 +84,8 @@ public class Board extends JFrame {
         }
     }
 
+    public void testPencils(){
+        System.out.println(field.getCellById(1).getMaxvalue());
+    }
+
 }

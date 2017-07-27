@@ -16,14 +16,15 @@ public class Cell {
         this.zones = zones;
         if (locked) {
             this.value = value;
+
         } else {
-            this.maxvalue = value;
+            maxvalue = value;
             reset();
         }
 
     }
 
-    void reset() {
+    private void reset() {
         pencil = new boolean[maxvalue];
         value = 0;
         filled = false;
@@ -55,9 +56,20 @@ public class Cell {
         return maxvalue;
     }
 
-    boolean[] getPencil() {
+    boolean[] getPencils() {
         return pencil;
     }
+    boolean getPencil(int id){
+        return pencil[id];
+    }
+
+    boolean setPencil(int id,boolean value){
+        boolean result=pencil[id];
+        pencil[id]=value;
+        return result;
+    }
+
+
 
     public Vector<Zone> getZones() {
         return zones;

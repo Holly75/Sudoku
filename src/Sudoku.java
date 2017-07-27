@@ -4,6 +4,8 @@ import Logic.Field;
 import Logic.PredefinedLevels;
 import Visual.Board;
 
+import javax.swing.*;
+
 public class Sudoku {
 
     private Board board;
@@ -21,7 +23,7 @@ public class Sudoku {
         });
     }
 
-    public Sudoku() {
+    private Sudoku() {
         initialize();
     }
 
@@ -30,10 +32,11 @@ public class Sudoku {
         Field field = new Field(predef.getLevel(0));
         board = new Board(field);
         board.setBounds(100, 100, 730, 489);
-        board.setDefaultCloseOperation(Board.EXIT_ON_CLOSE);
+        board.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         board.getContentPane().setLayout(null);
         board.reset();
         board.drawBoard();
+        board.testPencils();
         
     }
 
