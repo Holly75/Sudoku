@@ -54,7 +54,7 @@ public class Board extends JFrame {
             }
 
         }
-        dCell.calculateFontSize();
+        dCell.calculateFontSize(field.getZoneSize());
         this.setVisible(true);
         //        this.add(new JButton("Test"));
         pack();
@@ -84,8 +84,16 @@ public class Board extends JFrame {
         }
     }
 
-    public void testPencils(){
-        System.out.println(field.getCellById(1).getMaxvalue());
+    public void testPencils() {
+        int maxValue;
+
+        for (DisplayCell dCell : cells) {
+            maxValue = dCell.getMaxValue();
+            for (int i = 0; i < maxValue; i++) {
+                dCell.setPencil(i, (dCell.getId() % maxValue) != i);
+            }
+            dCell.drawMarks();
+        }
     }
 
 }

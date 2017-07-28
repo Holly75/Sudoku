@@ -46,25 +46,42 @@ public class DisplayCell extends JPanel {
     }
 
     private void drawpencils() {
-        int gridSize = (int)Math.sqrt(cell.getMaxvalue());
-        setLayout(new GridLayout(gridSize, gridSize, pencilGap, pencilGap));
-        JLabel pencil;
-        for (int i = 0; i < cell.getMaxvalue(); i++) {
-        }
-        text.setText(String.valueOf(board.textvalues[cell.getValue()]));
-        text.setVerticalAlignment(SwingConstants.CENTER);
-        text.setHorizontalAlignment(SwingConstants.CENTER);
 
-        text.setFont(markFont);
-        this.add(text, BorderLayout.CENTER);
+        int maxValue = cell.getMaxvalue();
+        int gridSize = (int)Math.sqrt(maxValue);
+        removeAll();
+        setLayout(new GridLayout(gridSize, gridSize, pencilGap, pencilGap));
+        pencil = new JLabel[maxValue];
+        boolean[] cellPencils = cell.getPencils();
+        for (int i = 0; i < maxValue; i++) {
+            if (cellPencils[i]) {
+                pencil[i] = new JLabel(String.valueOf(board.textvalues[i + 1]), SwingConstants.CENTER);
+
+            } else {
+                pencil[i] = new JLabel(String.valueOf(board.textvalues[0]), SwingConstants.CENTER);
+            }
+            pencil[i].setFont(pencilFont);
+            add(pencil[i]);
+        }
 
     }
 
-    void calculateFontSize() {
-        int fontSize = this.getPreferredSize().height / 2;
+    void calculateFontSize(int zoneSize) {
+        int fontSize = this.getPreferredSize().height;
         markFont = new Font("SansSerif", Font.PLAIN, fontSize);
-        pencilFont = new Font("SansSerif", Font.PLAIN, (int)(fontSize / Math.sqrt(cell.getMaxvalue())));
+        pencilFont = new Font("SansSerif", Font.PLAIN, (int)(fontSize / Math.sqrt(zoneSize)));
         lockedFont = new Font("SansSerif", Font.BOLD, fontSize);
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public boolean setPencil(int pencilMark, boolean value) {
+        return cell.setPencil(pencilMark, value);
+    }
+
+    public int getMaxValue() {
+        return cell.getMaxvalue();
+    }
 }

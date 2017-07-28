@@ -1,10 +1,10 @@
 import java.awt.*;
 
+import javax.swing.*;
+
 import Logic.Field;
 import Logic.PredefinedLevels;
 import Visual.Board;
-
-import javax.swing.*;
 
 public class Sudoku {
 
@@ -37,7 +37,7 @@ public class Sudoku {
         board.reset();
         board.drawBoard();
         board.testPencils();
-        
+
     }
 
 }
