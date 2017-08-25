@@ -15,20 +15,33 @@ public class Board extends JFrame {
     private int fieldWidth, fieldHeight, cellGap, margin, cellSize, cellCount;
     static final Character[] textvalues = {' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G'};
     private DisplayCell[] cells;
+    private JPanel mainPanel;
+    private Selector selector;
 
     public Board(Field field) {
         this.field = field;
-        cells = new DisplayCell[field.getHeight() * field.getWidth()];
+        mainPanel = new JPanel();
+        setLayout(new BorderLayout());
+        mainPanel.setAlignmentX(Component.TOP_ALIGNMENT);
 
+        add(mainPanel, BorderLayout.PAGE_START);
+        selector = new Selector(field.getZoneSize());
+        selector.setAlignmentX(Component.BOTTOM_ALIGNMENT);
+        add(selector, BorderLayout.PAGE_END);
+
+        cells = new DisplayCell[field.getHeight() * field.getWidth()];
+        pack();
+        this.invalidate();
     }
 
     public void reset() {
 
-        setBounds(32, 32, 360, 360);
+        mainPanel.setBounds(32, 32, 360, 360);
         setVisible(true);
+
         fieldWidth = field.getWidth();
         fieldHeight = field.getHeight();
-        setLayout(new GridLayout(fieldWidth, fieldHeight, cellGap, cellGap));
+        mainPanel.setLayout(new GridLayout(fieldWidth, fieldHeight, cellGap, cellGap));
         cellCount = fieldWidth * fieldHeight;
         cellGap = MIN_CELL_GAP;
         margin = MIN_MARGIN;
@@ -49,7 +62,7 @@ public class Board extends JFrame {
                 dCell.setLocation(posX, posY);
                 dCell.setEnabled(true);
                 dCell.setBorder(BorderFactory.createLineBorder(Color.black));
-                add(dCell);
+                mainPanel.add(dCell);
                 cells[id] = dCell;
             }
 

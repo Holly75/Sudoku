@@ -68,8 +68,8 @@ public class DisplayCell extends JPanel {
 
     void calculateFontSize(int zoneSize) {
         int fontSize = this.getPreferredSize().height;
-        markFont = new Font("SansSerif", Font.PLAIN, fontSize);
-        pencilFont = new Font("SansSerif", Font.PLAIN, (int)(fontSize / Math.sqrt(zoneSize)));
+        markFont = new Font("SansSerif", Font.PLAIN, fontSize - 1);
+        pencilFont = new Font("SansSerif", Font.PLAIN, (int)(fontSize / Math.sqrt(zoneSize)) - 2);
         lockedFont = new Font("SansSerif", Font.BOLD, fontSize);
     }
 

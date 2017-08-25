@@ -33,7 +33,7 @@ public class Sudoku {
         board = new Board(field);
         board.setBounds(100, 100, 730, 489);
         board.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        board.getContentPane().setLayout(null);
+        //        board.getContentPane().setLayout(new BorderLayout());
         board.reset();
         board.drawBoard();
         board.testPencils();
